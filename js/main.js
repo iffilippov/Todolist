@@ -9,11 +9,11 @@ let tasks = [];
 
 getFromLocalStorage()
 checkEmptyList();
+checkAllTaskCompleted();
 
 form.addEventListener('submit', addTask);
 tasksList.addEventListener('click', deleteTask);
 tasksList.addEventListener('click', completedTask);
-tasksList.addEventListener('click', checkAllTaskCompleted);
 
 function addTask(event) {
 	event.preventDefault();
@@ -31,6 +31,7 @@ function addTask(event) {
 	taskInput.value = '';
 	taskInput.focus();
 	checkEmptyList();
+	checkAllTaskCompleted();
 }
 
 function deleteTask(event) {
@@ -38,10 +39,16 @@ function deleteTask(event) {
 
 	const parentNode = event.target.closest('.list-group-item');
 	const id = Number(parentNode.id);
+	const taskCompletedHTML = document.getElementById('completedTask');
 
 	tasks = tasks.filter((task) => task.id !== id);
 	saveToLocalStorage();
 	parentNode.remove();
+	
+	if (taskCompletedHTML == null || tasks.length === 0) {
+		checkAllTaskCompleted();
+	}
+
 	checkEmptyList();
 }
 
@@ -51,13 +58,15 @@ function completedTask(event) {
 	const parentNode = event.target.closest('.list-group-item');
 	const id = Number(parentNode.id);
 	const task = tasks.find((task) => task.id === id);
-
-	task.completed = !task.completed;
-	saveToLocalStorage();
-
 	const taskTitle = parentNode.querySelector('.task-title');
 
+	task.completed = !task.completed;
+
+	saveToLocalStorage();
+	
 	taskTitle.classList.toggle('task-title--completed');
+
+	checkAllTaskCompleted();
 }
 
 function checkEmptyList() {
@@ -111,7 +120,7 @@ function checkAllTaskCompleted() {
 	
 	tasks.forEach(function(task) {
 		if (task.completed == true) {
- 			everythingCompletedCounter = everythingCompletedCounter + 1;
+ 			everythingCompletedCounter++;
 		}
 	})
 	
@@ -121,10 +130,9 @@ function checkAllTaskCompleted() {
 						<div class="empty-list__title">Все задачи выполнены!</div>
 					</li>`;
 		tasksList.insertAdjacentHTML('beforeend', allTasksCompletedHTML);
-	}
-	else {
+	} else {
 		if (taskCompletedHTML != null) {
 			taskCompletedHTML.remove();
-		}
+		}		
 	}
 }
