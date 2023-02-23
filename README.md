@@ -31,7 +31,7 @@ JavaScript
 Клонировать репозиторий
 
 ```
-git clone https://github.com/iffilippov/ToDoList.git
+git clone https://github.com/iffilippov/Todolist.git
 ```
 
 Установить Live Server от Ritwick Dey
