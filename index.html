@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    >
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"      
+    >
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" href="./static/img/task_list.svg" type="image/svg+xml">
+    <title>Todolist</title>
+  </head>
+  
+  <body>
+    <div class="container">
+      <div class="display-4 mb-2 text-center">Todolist</div>
+      <div class="h4 mb-5 text-center">Ваш список задач</div>
+
+      <!-- Task List -->
+      <div class="card mb-4">
+        <ul id="tasksList" class="list-group list-group-flush">          
+        </ul>
+      </div>      
+
+      <!-- Task Add Form -->
+      <div class="card bg-light">
+        <div class="card-header">Новая задача</div>
+        <div class="card-body">
+          <form id="form">
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-control"
+                id="taskInput"
+                placeholder="Текст задачи"
+                required
+              >              
+            </div>
+			<div class="col d-flex justify-content-end">
+              <button type="submit" class="btn btn-outline-success">
+                Добавить задачу
+              </button>
+			</div>
+          </form>
+        </div>
+      </div>      
+    </div>
+
+    <div class="copyright">
+	  <p>
+		Todolist. Управление задачами от
+		<a href="https://www.linkedin.com/in/iffilippov/" target="_blank">
+		  IFFilippov
+		</a>
+	  </p>
+	  <p>
+	  <span id="year"></span>
+	  </p>	  
+	</div>
+
+    <script src="js/main.js"></script>
+
+  </body>
+</html>
